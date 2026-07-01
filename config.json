@@ -1,0 +1,47 @@
+{
+  "name": "termmant",
+  "version": "1.0.0",
+  "description": "TermMant - Sistema de Mantención Preventiva por TermIng Chile",
+  "config": {
+    "webhook_url": "REEMPLAZAR_CON_URL_DE_MAKE",
+    "sheet_id": "REEMPLAZAR_CON_ID_DE_GOOGLE_SHEET",
+    "notificacion_jefe": "REEMPLAZAR_CON_NUMERO_WHATSAPP_JEFE",
+    "empresa": "TermIng Chile SPA",
+    "producto": "TermMant"
+  },
+  "campos": [
+    "id_revision",
+    "timestamp",
+    "tecnico",
+    "fecha",
+    "hora",
+    "equipo",
+    "codigo",
+    "tipo_equipo",
+    "ubicacion",
+    "horometro",
+    "checklist_visual",
+    "checklist_fluidos",
+    "checklist_fugas",
+    "checklist_temperatura",
+    "checklist_ruido",
+    "checklist_electrico",
+    "checklist_protecciones",
+    "checklist_instrumentos",
+    "checklist_limpieza",
+    "checklist_senalizacion",
+    "operativo",
+    "tipo_mantencion",
+    "hay_falla",
+    "desc_falla",
+    "criticidad",
+    "estado_final",
+    "repuesto_requerido",
+    "observaciones"
+  ],
+  "alertas": {
+    "critica": "🔴 ALERTA CRÍTICA TermMant\nEquipo: {{equipo}}\nTécnico: {{tecnico}}\nFalla: {{desc_falla}}\nAcción: DETENER EQUIPO INMEDIATAMENTE",
+    "moderada": "🟠 AVISO TermMant\nEquipo: {{equipo}}\nTécnico: {{tecnico}}\nFalla moderada detectada. Atención requerida en 72 hrs.",
+    "resumen_diario": "📊 Resumen TermMant - {{fecha}}\n✅ Revisiones OK: {{ok}}\n⚠️ Con observaciones: {{warn}}\n🔴 Fallas críticas: {{criticas}}\n📋 Pendientes: {{pendientes}}"
+  }
+}
