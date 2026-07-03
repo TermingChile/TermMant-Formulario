@@ -767,7 +767,7 @@ function updateProgress() {
 }
 
 // ── CONFIG — reemplaza con tu URL de Make.com ──
-const MAKE_WEBHOOK = 'REEMPLAZAR_CON_TU_URL_MAKE_WEBHOOK';
+const MAKE_WEBHOOK = 'https://hook.us2.make.com/1uailok2049b624cq1kt8cqgvw1rikaf';
 
 // ── SUBMIT ──
 async function submitForm() {
@@ -867,13 +867,11 @@ async function submitForm() {
 
   try {
     // Enviar a Make.com webhook
-    if (MAKE_WEBHOOK !== 'REEMPLAZAR_CON_TU_URL_MAKE_WEBHOOK') {
-      await fetch(MAKE_WEBHOOK, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-    }
+    await fetch(MAKE_WEBHOOK, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
 
     // Guardar localmente como respaldo
     const historial = JSON.parse(localStorage.getItem('termmant_revisiones') || '[]');
