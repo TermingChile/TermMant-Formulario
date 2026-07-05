@@ -868,9 +868,10 @@ async function submitForm() {
   try {
     // Enviar a Make.com webhook
     await fetch(MAKE_WEBHOOK, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
     });
 
     // Guardar localmente como respaldo
