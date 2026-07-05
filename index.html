@@ -867,13 +867,17 @@ async function submitForm() {
 
   try {
     // Enviar a Make.com webhook
-    await fetch(MAKE_WEBHOOK, {
+    const res = await fetch(MAKE_WEBHOOK, {
       method: 'POST',
-      headers: { 
-        'Content-Type': 'text/plain'
+      headers: {
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
     });
+
+    if (!res.ok) {
+      throw new Error('Webhook respondió status ' + res.status);
+    }
 
     // Guardar localmente como respaldo
     const historial = JSON.parse(localStorage.getItem('termmant_revisiones') || '[]');
@@ -886,8 +890,13 @@ async function submitForm() {
     document.getElementById('progress').style.width = '100%';
 
   } catch (err) {
-    // Si falla el webhook, igual guarda local
-    alert('⚠️ Sin conexión. El registro se guardó localmente y se enviará cuando haya internet.');
+    console.error('Error enviando a Make:', err);
+    // Igual guarda local como respaldo, pero avisa que revise conexión/webhook
+    const historial = JSON.parse(localStorage.getItem('termmant_revisiones') || '[]');
+    historial.push(payload);
+    localStorage.setItem('termmant_revisiones', JSON.stringify(historial));
+
+    alert('⚠️ No se pudo confirmar el envío al servidor. El registro se guardó localmente en este dispositivo. Revisa tu conexión o avisa al administrador del sistema.');
     document.getElementById('success-id').textContent = id;
     document.getElementById('success').classList.add('show');
   } finally {
